@@ -1,0 +1,6 @@
+{
+  "Config": {
+    "Allow_Adding_Users": "True",
+    "DB-Path": "db-test.db"
+  }
+}
