@@ -1,4 +1,4 @@
 # UserAuth
- -Little User Authentication Programm with SQLite DB for storing login credentials.
-  - Passwords only saved as SHA256 Hashes!
+ Little User Authentication Programm with SQLite DB for storing login credentials.
+  - Passwords are saved as SHA256 Hashes only!
   - Config file for DB Path and the option to add new users.
