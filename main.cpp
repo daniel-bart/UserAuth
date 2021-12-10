@@ -1,12 +1,10 @@
 
 #include <iostream>
-#include<vector>
-#include<Windows.h>
+#include <Windows.h>
 #include <fstream>
 #include <iomanip>
 #include <sstream>
 #include <string>
-#include <array>
 #include <algorithm>
 #include <map>
 #include "sha.h"
