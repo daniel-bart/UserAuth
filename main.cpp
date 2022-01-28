@@ -1,10 +1,12 @@
 
 #include <iostream>
+#include <vector>
 #include <Windows.h>
 #include <fstream>
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <array>
 #include <algorithm>
 #include <map>
 #include "sha.h"
@@ -29,7 +31,7 @@ void show_input() {
 	SetConsoleMode(hStdin, mode);
 	return;
 }
-string get_config(string conf) {
+string get_config(const string& conf) {
 	string details;
 	ifstream i("config.json");
 	json j = json::parse(i); 
@@ -63,7 +65,7 @@ string string_to_hex(const string& input)
 	}
 	return output;
 }
-string SHA256(string data)
+string SHA256(const string& data)
 {
 	CryptoPP::byte const* pbData = (CryptoPP::byte*)data.data();
 	unsigned int nDataLen = data.length();
@@ -72,7 +74,7 @@ string SHA256(string data)
 	CryptoPP::SHA256().CalculateDigest(abDigest, pbData, nDataLen);
 	return string_to_hex(string((char*)abDigest, CryptoPP::SHA256::DIGESTSIZE));
 }
-string get_data_db(string username) {
+string get_data_db(const string& username) {
 	string statement = "SELECT password_hash FROM users WHERE username LIKE '" + username + "';";
 	sqlite3* db;
 	int cols = 0;
@@ -102,7 +104,7 @@ string get_data_db(string username) {
 	return hash;
 
 }
-bool is_valid_credentials(string usr, string pw) {
+bool is_valid_credentials(const string& usr, const string& pw) {
 	string hash = get_data_db(usr);
 	string passwordHash = SHA256(pw);
 	if (hash == passwordHash) {
@@ -112,7 +114,7 @@ bool is_valid_credentials(string usr, string pw) {
 		return false;
 	}
 }
-void add_data_db(string username, string pw_hash) {
+void add_data_db(const string& username, const string& pw_hash) {
 	sqlite3* db;
 	char* zErrMsg = 0;
 	int rc;
